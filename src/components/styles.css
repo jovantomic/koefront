@@ -1,0 +1,94 @@
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    position: relative;
+    padding-bottom: 1rem; /* Dodajte padding na dnu da ne bi strelica bila prekrivena */
+  }
+  
+  .product-icon {
+    flex: 0 0 auto;
+    width: calc(100% / 4 - 0.5rem); /* 4 proizvoda po redu na desktopu */
+    margin-right: 0.5rem; /* Margina između proizvoda */
+    box-sizing: border-box; /* Uverite se da padding i border ne utiču na širinu */
+  }
+  
+  @media (max-width: 768px) {
+    .product-icon {
+      width: calc(60% - 0.5rem); /* 2 proizvoda po redu na mobilnim uređajima */
+    }
+  }
+  
+  .product-icon:last-child {
+    margin-right: 0; /* Uklanja margina za poslednji element */
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+  }
+  
+  .scroll-indicator svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  
+  .scroll-indicator {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* Skriveno po default-u */
+    transition: opacity 0.3s; /* Dodaj tranziciju za nestajanje */
+  }
+  
+  .scroll-container.show-indicator .scroll-indicator {
+    display: block; /* Prikazuje strelicu kada ima više proizvoda */
+  }
+  
+  .scroll-container.scrolled .scroll-indicator {
+    opacity: 0; /* Nestaje kada se skroluje */
+  }
+  /* styles.css */
+  .carousel-image {
+    width: auto; /* Širina slike je automatska */
+    height: 100%; /* Visina slike je 100% roditeljskog kontejnera */
+    object-fit: cover; /* Obezbedite da slike zadrže proporcije i popune prostor */
+  }
+  
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .carousel-dot {
+    width: 0.75rem; /* Veličina kružića */
+    height: 0.75rem; /* Veličina kružića */
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    cursor: pointer; /* Dodajte kursor pointer za klikabilnost */
+  }
+  
+  .carousel-dot.active {
+    background-color: white;
+  }
+  .font-lora {
+    font-family: 'Lora', serif;
+  }
