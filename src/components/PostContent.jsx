@@ -69,7 +69,7 @@ const PostContent = () => {
                     This is an example description for the post. Here you can add any relevant content or description you want to display.
                     This is an example description for the post. Here you can add any relevant content or description you want to display.
                     This is an example description for the post. Here you can add any relevant content or description you want to display.
-                    This is an example description for the post. Here you can add any relevant content or description you want to display.
+                    This is an examdple description for the post. Here you can add any relevant content or description you want to display.
                 </p>
                 <div className={`scroll-container m-4 ${scrolled ? 'scrolled' : ''} ${showIndicator ? 'show-indicator' : ''}`}>
                     <div className="product-icon">
