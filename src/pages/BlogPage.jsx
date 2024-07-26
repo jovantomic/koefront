@@ -1,12 +1,13 @@
 import React from 'react';
-import PostContent from './PostContent'; 
-import Naslov from './naslovk';
-import Footer from './footer';
+import { useParams } from 'react-router-dom';
+import PostContent from '../components/PostContent'; 
+import Naslov from '../components/naslovk';
+import Footer from '../components/footer';
 import useFetch from '../utils/useFetch';
 
 const Post = () => {
-
-    /*const url = 'http://localhost:9090/blogs/1'; // Zamenite sa vašim URL-om
+    const { id } = useParams(); // Uzimanje id iz URL-a
+    const url = `http://localhost:8084/blogs/${id}`; // Dinamički izgradite URL koristeći id
     const { data, loading, error } = useFetch(url);
 
     if (loading) {
@@ -17,15 +18,12 @@ const Post = () => {
         return <div>Error: {error.message}</div>;
     }
 
-    */
-
     return (
         <div className="flex flex-col items-center justify-center w-full">
             <Naslov />
-            <PostContent />
+            <PostContent data={data} /> {/* Prosledite preuzete podatke */}
             <div className='w-full'>
-            <Footer/>
-                
+                <Footer/>
             </div>
         </div>
     );

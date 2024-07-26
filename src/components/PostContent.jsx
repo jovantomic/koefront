@@ -3,7 +3,10 @@ import './styles.css'; // Importovanje CSS fajla
 import ProductIcon from './ProductIcon'; // Importovanje ProductIcon komponente
 
 
-const PostContent = () => {
+const PostContent = ({data}) => {
+
+    const sortedImages = data.images.sort((a, b) => a.priority - b.priority);
+
     const [scrolled, setScrolled] = useState(false);
     const [showIndicator, setShowIndicator] = useState(false);
 
@@ -54,22 +57,22 @@ const PostContent = () => {
     return (
         <div className="flex flex-col md:flex-row w-full h-auto p-8 bg-white shadow-lg">
             <div className="w-full md:w-1/3 h-auto">
-                <img
-                    className="w-full h-full object-cover"
-                    src="zena2.jpg"
-                    alt="Post image"
-                />
+            {sortedImages.map((image, index) => (
+                        <img
+                            key={image.id}
+                            className={`w-full h-full object-cover ${index > 0 ? 'hidden' : ''}`}
+                            src={image.url}
+                            alt={data.title}
+                        />
+                    ))}
             </div>
             <div className="w-full md:w-2/3 flex flex-col p-4 md:p-8">
 
             <h4 className="font-lora font-extralight text-black text-3xl md:text-5xl mb-4">
-                 Haljina
+                 {data.title}
             </h4>
                 <p className="text-base md:text-lg text-neutral-600 mb-6">
-                    This is an example description for the post. Here you can add any relevant content or description you want to display.
-                    This is an example description for the post. Here you can add any relevant content or description you want to display.
-                    This is an example description for the post. Here you can add any relevant content or description you want to display.
-                    This is an examdple description for the post. Here you can add any relevant content or description you want to display.
+                {data.long_content}
                 </p>
                 <div className={`scroll-container m-4 ${scrolled ? 'scrolled' : ''} ${showIndicator ? 'show-indicator' : ''}`}>
                     <div className="product-icon">
