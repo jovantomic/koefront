@@ -1,11 +1,16 @@
 .scroll-container {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    position: relative;
-    padding-bottom: 1rem; /* Dodajte padding na dnu da ne bi strelica bila prekrivena */
-  }
-  
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  position: relative;
+  white-space: nowrap;
+  padding-bottom: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
   .product-icon {
     flex: 0 0 auto;
     width: calc(100% / 4 - 0.5rem); /* 4 proizvoda po redu na desktopu */
@@ -23,16 +28,6 @@
     margin-right: 0; /* Uklanja margina za poslednji element */
   }
   
-  .scroll-indicator {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    cursor: pointer;
-    padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-  }
   
   .scroll-indicator svg {
     width: 24px;
@@ -43,20 +38,19 @@
   .scroll-indicator {
     position: absolute;
     top: 50%;
-    right: 0;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
+    padding: 8px;
     cursor: pointer;
-    display: none; /* Skriveno po default-u */
-    transition: opacity 0.3s; /* Dodaj tranziciju za nestajanje */
-  }
+    z-index: 10;
+    display: none;
+}
+
   
-  .scroll-container.show-indicator .scroll-indicator {
-    display: block; /* Prikazuje strelicu kada ima više proizvoda */
-  }
+.scroll-container.show-indicator .scroll-indicator {
+  display: flex;
+}
   
   .scroll-container.scrolled .scroll-indicator {
     opacity: 0; /* Nestaje kada se skroluje */
@@ -92,3 +86,23 @@
   .font-lora {
     font-family: 'Lora', serif;
   }
+  .scroll-indicator.left {
+    left: 10px;
+}
+
+.scroll-indicator.right {
+    right: 10px;
+}
+.scrolled .scroll-indicator.left {
+  display: flex;
+}
+
+.product-icon {
+  display: inline-block;
+  margin: 0 10px;
+}
+@media (min-width: 768px) {
+  .product-icon {
+    width: calc(100% / 4 - 0.5rem); /* 4 proizvoda po redu na desktopu */
+  }
+}

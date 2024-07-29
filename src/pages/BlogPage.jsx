@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import PostContent from '../components/PostContent'; 
-import Naslov from '../components/naslovk';
-import Footer from '../components/footer';
+import Naslov from '../components/NaslovPage';
+import Footer from '../components/FooterPage';
 import useFetch from '../utils/useFetch';
 
 const Post = () => {
@@ -21,8 +21,11 @@ const Post = () => {
     return (
         <div className="flex flex-col items-center justify-center w-full">
             <Naslov />
+            
             <PostContent data={data} /> {/* Prosledite preuzete podatke */}
-            <div className='w-full'>
+
+            
+            <div className='w-full md:fixed bottom-0 left-0 bg-gray-100 z-50'>
                 <Footer/>
             </div>
         </div>

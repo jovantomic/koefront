@@ -6,7 +6,7 @@ const ProductIcon = ({ imageSrc, text }) => {
             <div className="relative" style={{ width: '10rem', height: '12rem' }}>
                 <img
                     className="w-full h-full object-cover transition-opacity duration-300 hover:opacity-70"
-                    src={imageSrc}
+                    src='zena2.jpg'
                     alt={text}
                 />
             </div>

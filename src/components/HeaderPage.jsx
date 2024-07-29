@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HeroSection = () => {
+const Header = () => {
     const handleScrollDown = () => {
         window.scrollBy({
             top: window.innerHeight, // pomeri se za visinu prozora
@@ -28,4 +28,4 @@ const HeroSection = () => {
     );
 };
 
-export default HeroSection;
+export default Header;

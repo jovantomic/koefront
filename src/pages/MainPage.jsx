@@ -1,8 +1,8 @@
 import React from 'react';
-import HeroSection from '../components/header.jsx';
-import Naslov from '../components/naslovk.jsx';
+import Header from '../components/HeaderPage.jsx';
+import Naslov from '../components/NaslovPage.jsx';
 import BlogCard from '../components/blogCard.jsx';
-import Footer from '../components/footer.jsx';
+import Footer from '../components/FooterPage.jsx';
 import useFetch from '../utils/useFetch.js'; // Putanja do useFetch
 
 const MainPage = () => {
@@ -21,7 +21,7 @@ const MainPage = () => {
     
     return (
         <>
-            <HeroSection />
+            <Header />
             <div className='pt-12'>
             <Naslov />
             </div>
