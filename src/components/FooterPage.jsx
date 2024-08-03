@@ -8,7 +8,7 @@ const Footer = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/newsletter/email', {
+            const response = await fetch('http://localhost:8084/newsletter/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Footer = () => {
                                 type="submit" 
                                 className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
                             >
-                                Pretplati se
+                                Prijavi se
                             </button>
                         </form>
                     </div>
@@ -72,8 +72,8 @@ const Footer = () => {
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-                        <h2 className="text-2xl font-bold mb-4">Uspešno pretplaćeni!</h2>
-                        <p className="mb-6">Hvala što ste se pretplatili na naš newsletter.</p>
+                        <h2 className="text-2xl font-bold mb-4">Uspešno prijavljeni!</h2>
+                        <p className="mb-6">Hvala što ste se prijavili na naš newsletter.</p>
                         <button 
                             className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
                             onClick={() => setShowPopup(false)}
