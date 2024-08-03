@@ -4,6 +4,7 @@ import { FaFacebookF, FaInstagram, FaPinterestP } from 'react-icons/fa';
 const Footer = () => {
     const [email, setEmail] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,15 +17,17 @@ const Footer = () => {
                 body: JSON.stringify({ email }),
             });
 
-            
             if (response.ok) {
                 setShowPopup(true);
                 setEmail('');
+                setShowErrorPopup(false); // Hide error popup if successful
             } else {
                 console.error('Failed to subscribe');
+                setShowErrorPopup(true); // Show error popup if failed
             }
         } catch (error) {
             console.error('Error:', error);
+            setShowErrorPopup(true); // Show error popup if there is an exception
         }
     };
 
@@ -69,6 +72,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
@@ -77,6 +81,21 @@ const Footer = () => {
                         <button 
                             className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
                             onClick={() => setShowPopup(false)}
+                        >
+                            OK
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {showErrorPopup && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+                        <h2 className="text-2xl font-bold mb-4">Greška!</h2>
+                        <p className="mb-6">Došlo je do greške prilikom prijave. Molimo pokušajte ponovo.</p>
+                        <button 
+                            className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
+                            onClick={() => setShowErrorPopup(false)}
                         >
                             OK
                         </button>
