@@ -1,7 +1,36 @@
-import React from 'react';
-import { FaFacebookF, FaInstagram, FaPinterest, FaPinterestP, FaTwitter } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaFacebookF, FaInstagram, FaPinterestP } from 'react-icons/fa';
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8084/newsletter/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                setShowPopup(true);
+                setEmail('');
+                setShowErrorPopup(false); // Hide error popup if successful
+            } else {
+                console.error('Failed to subscribe');
+                setShowErrorPopup(true); // Show error popup if failed
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setShowErrorPopup(true); // Show error popup if there is an exception
+        }
+    };
+
     return (
         <footer className="bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-black py-8">
             <div className="container mx-auto px-4">
@@ -10,17 +39,20 @@ const Footer = () => {
                         <h5 className="text-lg font-bold mb-2">Newsletter</h5>
                         <p className="mb-2 text-sm">Budite prvi koji dobijaju nove ponude i informacije o našim proizvodima.</p>
 
-                        <form className="flex flex-col md:flex-row items-center">
+                        <form className="flex flex-col md:flex-row items-center" onSubmit={handleSubmit}>
                             <input 
                                 type="email" 
                                 className="px-4 py-2 w-full md:flex-grow border border-gray-600 focus:outline-none focus:border-gray-500"
                                 placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <button 
                                 type="submit" 
                                 className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
                             >
-                                Pretplati se
+                                Prijavi se
                             </button>
                         </form>
                     </div>
@@ -40,6 +72,36 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+
+            {showPopup && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+                        <h2 className="text-2xl font-bold mb-4">Uspešno prijavljeni!</h2>
+                        <p className="mb-6">Hvala što ste se prijavili na naš newsletter.</p>
+                        <button 
+                            className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
+                            onClick={() => setShowPopup(false)}
+                        >
+                            OK
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {showErrorPopup && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+                        <h2 className="text-2xl font-bold mb-4">Greška!</h2>
+                        <p className="mb-6">Došlo je do greške prilikom prijave. Molimo pokušajte ponovo.</p>
+                        <button 
+                            className="mt-2 md:mt-0 md:ml-2 px-4 py-2 bg-slate-700 hover:bg-slate-500 transition duration-200 text-white text-sm w-32"
+                            onClick={() => setShowErrorPopup(false)}
+                        >
+                            OK
+                        </button>
+                    </div>
+                </div>
+            )}
         </footer>
     );
 };
