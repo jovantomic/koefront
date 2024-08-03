@@ -1,0 +1,93 @@
+.container-wrapper {
+    display: flex;
+    justify-content: center; /* Horizontalno centriranje .parent-container-a */
+    align-items: flex-end; /* Postavite .parent-container na dno stranice */
+    height: 59.7vh; /* Visina na 100% visine prozora */
+    width: 100%; /* Osigurajte da .container-wrapper zauzima punu širinu */
+    margin: 0; /* Uklonite sve margine */
+}
+
+
+.parent-container {
+    display: flex; /* Koristite flex za centriranje unutar .container-wrapper */
+    justify-content: center; /* Horizontalno centriranje .product-gallery */
+    width: 100%; /* Osigurajte da .parent-container zauzima punu širinu */
+}
+
+.product-gallery {
+    position: relative;
+    overflow: hidden;
+    width: 880px; /* Definiši osnovnu širinu */
+}
+
+@media (max-width: 1300px) {
+    .product-gallery {
+        width: 660px; /* Širina za tablet uređaje */
+    }
+}
+
+@media (max-width: 1100px) {
+    .product-gallery {
+        width: 440px; /* Širina za tablet uređaje */
+    }
+}
+
+
+@media (max-width: 980px) {
+    .product-gallery {
+        width: 305px; /* Širina za mobilne uređaje */
+    }
+
+}
+
+
+.product-carousel {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.product-container {
+    display: flex;
+    transition: transform 0.5s ease;
+   
+    overflow: hidden;
+}
+
+.product-card {
+    flex: 0 0 auto;
+    width: calc(100% / 3); /* Prikazuje tri kartice sa razmakom od 10px između */
+    margin-right: 10px; /* Razmak između kartica */
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .container-wrapper{
+        height: 90vh; /* Visina na 100% visine prozora */
+    }
+
+    .product-card {
+        margin-right: 5px; /* Razmak između kartica */
+        margin-left: 5px;
+    }
+}
+
+.nav-button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}

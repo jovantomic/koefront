@@ -11,7 +11,12 @@
   display: none;  /* Safari and Chrome */
 }
 
-  .product-icon {
+
+.p-content-style{
+  height: 250px;
+}
+
+.product-icon {
     flex: 0 0 auto;
     width: calc(100% / 4 - 0.5rem); /* 4 proizvoda po redu na desktopu */
     margin-right: 0.5rem; /* Margina između proizvoda */
@@ -21,6 +26,10 @@
   @media (max-width: 768px) {
     .product-icon {
       width: calc(60% - 0.5rem); /* 2 proizvoda po redu na mobilnim uređajima */
+    }
+
+    .p-content-style{
+      height: auto;
     }
   }
   
@@ -105,4 +114,34 @@
   .product-icon {
     width: calc(100% / 4 - 0.5rem); /* 4 proizvoda po redu na desktopu */
   }
+}
+
+.blog-big-image {
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+  cursor: pointer; /* Da pokaže da je slika klikabilna */
+}
+
+/* Responsive dizajn za manje ekrane */
+@media (max-width: 1024px) {
+  .blog-big-image  {
+      height: 450px; /* Visina za tablet uređaje */
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-big-image  {
+      height: 450px; /* Visina za mobilne uređaje */
+  }
+}
+
+.fade {
+  animation: fade 1s ease-in-out; /* Povećaj trajanje animacije za glatki prelaz */
+}
+
+@keyframes fade {
+  0% { opacity: 0; } /* Početno stanje potpuno transparentno */
+  50% { opacity: 0.5; } /* Polu-transparentno u sredini animacije */
+  100% { opacity: 1; } /* Kraj animacije potpuno vidljivo */
 }

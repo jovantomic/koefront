@@ -4,6 +4,8 @@ import PostContent from '../components/PostContent';
 import Naslov from '../components/NaslovPage';
 import Footer from '../components/FooterPage';
 import useFetch from '../utils/useFetch';
+import ErrorPage from './ErrorPage';
+import LoadingPage from './LoadingPage';
 
 const Post = () => {
     const { id } = useParams(); // Uzimanje id iz URL-a
@@ -11,21 +13,21 @@ const Post = () => {
     const { data, loading, error } = useFetch(url);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <LoadingPage/>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <ErrorPage/>;
     }
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
             <Naslov />
-            
+
             <PostContent data={data} /> {/* Prosledite preuzete podatke */}
 
             
-            <div className='w-full md:fixed bottom-0 left-0 bg-gray-100 z-50'>
+            <div className='flex flex-col w-full h-auto p-8 bg-white shadow-lg'>
                 <Footer/>
             </div>
         </div>
